@@ -1,0 +1,17 @@
+fastapi
+uvicorn
+python-dotenv
+supabase
+httpx
+pydantic
+bcrypt
+pyjwt
+cryptography
+numpy
+opencv-python
+Pillow
+torch
+torchvision
+timm
+scikit-learn
+pycryptodome
