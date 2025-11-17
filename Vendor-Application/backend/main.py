@@ -143,6 +143,10 @@ def generate_tx_id() -> str:
 def generate_otp() -> str:
     return str(random.randint(100000, 999999))
 
+@app.get("/")
+def home():
+    return {"status": "Vendor Backend is running successfully!"}
+
 # Authentication routes
 @api_router.post("/vendor/register")
 async def register_vendor(data: VendorRegister):
