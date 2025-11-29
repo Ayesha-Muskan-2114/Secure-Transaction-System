@@ -1,5 +1,5 @@
 'use client'
-
+import Image from "next/image";
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
@@ -84,20 +84,34 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-6xl grid md:grid-cols-2 gap-8 items-center">
+    <div
+    className="relative min-h-screen flex items-center justify-center bg-cover bg-center"
+    style={{ backgroundImage: "url('/images/bg.png')" }}
+  >
+    {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-black/25"></div>
+
+      <div className="relative z-10 min-h-screen flex items-center justify-center p-4 w-full max-w-6xl grid md:grid-cols-2 gap-8">
 
         {/* Branding Left */}
-        <div className="space-y-6">
+        <div className="space-y-6 text-white">
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-              <Shield className="w-7 h-7 text-white" />
-            </div>
+             <div className="flex justify-center py-6">
+        <Image
+          src="/images/logo1.jpg"
+          alt="NammaPay Logo"
+          width={200}
+          height={70}
+          className="rounded-xl shadow-lg"
+          priority
+        />
+      </div>
             <div>
-              <h1 className="text-3xl font-bold text-blue-900">ABC Secure Bank</h1>
-              <p className="text-sm text-gray-600">Blockchain-Backed Banking</p>
+              <h1 className="text-3xl font-bold">BGS Neo Bank</h1>
+              <p className="text-sm text-blue-200">Blockchain-Backed Banking</p>
             </div>
           </div>
+         
 
           <div className="space-y-4">
             <div className="flex items-start space-x-3">
@@ -105,8 +119,8 @@ export default function Home() {
                 <Lock className="w-5 h-5 text-blue-600" />
               </div>
               <div>
-                <h3 className="font-semibold text-gray-900">Military-Grade Security</h3>
-                <p className="text-sm text-gray-600">AES-256 encryption & blockchain ledger</p>
+                <h3 className="font-semibold text-white">Military-Grade Security</h3>
+                <p className="text-sm text-blue-200">AES-256 encryption & blockchain ledger</p>
               </div>
             </div>
 
@@ -115,12 +129,13 @@ export default function Home() {
                 <Fingerprint className="w-5 h-5 text-blue-600" />
               </div>
               <div>
-                <h3 className="font-semibold text-gray-900">FacePay Technology</h3>
-                <p className="text-sm text-gray-600">Biometric payments with face recognition</p>
+                <h3 className="font-semibold text-white">FacePay Technology</h3>
+                <p className="text-sm text-blue-200">Biometric payments with face recognition</p>
               </div>
             </div>
           </div>
         </div>
+
 
         {/* Auth Card */}
         <Card className="w-full">
@@ -247,5 +262,6 @@ export default function Home() {
         </Card>
       </div>
     </div>
+   
   )
 }
