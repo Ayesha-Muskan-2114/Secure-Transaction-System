@@ -1,5 +1,5 @@
 'use client';
-
+import Image from "next/image";
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -57,26 +57,49 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-purple-50 via-violet-50 to-purple-100 dark:from-purple-950 dark:via-violet-950 dark:to-purple-900 p-4">
-      <Card className="w-full max-w-2xl shadow-2xl my-8">
+  <div
+    className="relative min-h-screen flex items-center justify-center bg-cover bg-center"
+    style={{ backgroundImage: "url('/images/bg.png')" }}
+  >
+    {/* Dark overlay for contrast */}
+    <div className="absolute inset-0 bg-black/40"></div>
+
+    {/* Registration Card */}
+    <div className="relative z-10 w-full max-w-2xl p-4">
+      <Card className="w-full my-8 shadow-2xl 
+        bg-white/10 backdrop-blur-xl 
+        border border-white/20 rounded-2xl">
+        
         <CardHeader className="space-y-1 text-center">
-          <div className="flex justify-center mb-4">
-            <div className="rounded-full bg-gradient-to-br from-purple-600 to-violet-600 p-3">
-              <Building2 className="h-10 w-10 text-white" />
-            </div>
-          </div>
-          <CardTitle className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent">
-            Vendor Registration
-          </CardTitle>
-          <CardDescription>Create your vendor account to get started</CardDescription>
+           <div className="flex justify-center">
+                        <Image
+                          src="/images/logo.png"
+                          alt="NammaPay Logo"
+                          width={150}
+                          height={70}
+                          className="rounded-xl shadow-lg"
+                          priority
+                        />
+                      </div>
+
+     {/**    <CardTitle className="text-3xl font-bold text-white text-center">
+   ನಮ್ಮPay  
+</CardTitle> */} 
+
+
+          <CardDescription className="text-white/80">
+            Create your vendor account to get started
+          </CardDescription>
         </CardHeader>
+
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="name">Full Name *</Label>
+                <Label className="text-white">Full Name *</Label>
                 <Input
-                  id="name"
+                className="text-white placeholder-white/70"
                   placeholder="John Doe"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -84,10 +107,11 @@ export default function RegisterPage() {
                   disabled={loading}
                 />
               </div>
+
               <div className="space-y-2">
-                <Label htmlFor="mobile">Mobile Number *</Label>
+                <Label className="text-white">Mobile Number *</Label>
                 <Input
-                  id="mobile"
+                className="text-white placeholder-white/70"
                   type="tel"
                   placeholder="9876543210"
                   value={formData.mobile}
@@ -99,9 +123,9 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email">Email Address *</Label>
+              <Label className="text-white">Email Address *</Label>
               <Input
-                id="email"
+              className="text-white placeholder-white/70"
                 type="email"
                 placeholder="vendor@example.com"
                 value={formData.email}
@@ -113,9 +137,9 @@ export default function RegisterPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="account_number">Account Number *</Label>
+                <Label className="text-white">Account Number *</Label>
                 <Input
-                  id="account_number"
+                className="text-white placeholder-white/70"
                   placeholder="1234567890"
                   value={formData.account_number}
                   onChange={(e) => setFormData({ ...formData, account_number: e.target.value })}
@@ -123,10 +147,11 @@ export default function RegisterPage() {
                   disabled={loading}
                 />
               </div>
+
               <div className="space-y-2">
-                <Label htmlFor="branch">Branch *</Label>
+                <Label className="text-white">Branch *</Label>
                 <Input
-                  id="branch"
+                className="text-white placeholder-white/70"
                   placeholder="Main Branch"
                   value={formData.branch}
                   onChange={(e) => setFormData({ ...formData, branch: e.target.value })}
@@ -135,11 +160,10 @@ export default function RegisterPage() {
                 />
               </div>
             </div>
-
+{/** 
             <div className="space-y-2">
-              <Label htmlFor="initial_balance">Initial Balance (Optional)</Label>
+              <Label className="text-white">Initial Balance (Optional)</Label>
               <Input
-                id="initial_balance"
                 type="number"
                 step="0.01"
                 min="0"
@@ -149,12 +173,12 @@ export default function RegisterPage() {
                 disabled={loading}
               />
             </div>
-
+*/}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="pin">Create PIN *</Label>
+                <Label className="text-white">Create PIN *</Label>
                 <Input
-                  id="pin"
+                className="text-white placeholder-white/70"
                   type="password"
                   placeholder="Enter 4-6 digit PIN"
                   value={formData.pin}
@@ -163,10 +187,11 @@ export default function RegisterPage() {
                   disabled={loading}
                 />
               </div>
+
               <div className="space-y-2">
-                <Label htmlFor="confirm_pin">Confirm PIN *</Label>
+                <Label className="text-white">Confirm PIN *</Label>
                 <Input
-                  id="confirm_pin"
+                className="text-white placeholder-white/70"
                   type="password"
                   placeholder="Re-enter PIN"
                   value={formData.confirm_pin}
@@ -188,14 +213,17 @@ export default function RegisterPage() {
               )}
             </Button>
           </form>
-          <div className="mt-4 text-center text-sm">
-            <span className="text-muted-foreground">Already have an account? </span>
-            <Link href="/login" className="text-primary hover:underline font-medium">
+
+          <div className="mt-4 text-center text-sm text-white/80">
+            Already have an account?{" "}
+            <Link href="/login" className="text-purple-400 hover:underline font-medium">
               Sign in here
             </Link>
           </div>
         </CardContent>
       </Card>
     </div>
-  );
+  </div>
+);
+
 }

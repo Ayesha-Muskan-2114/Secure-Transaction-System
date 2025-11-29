@@ -16,8 +16,13 @@ export default function Home() {
   }, [router]);
 
   return (
-    <div className="flex h-screen items-center justify-center">
-      <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-primary"></div>
+    <div
+      className="relative flex h-screen items-center justify-center bg-cover bg-center"
+      style={{ backgroundImage: "url('/images/bg.png')" }}
+    >
+      <div className="absolute inset-0 bg-black/40"></div>
+
+      <div className="relative z-10 h-32 w-32 animate-spin rounded-full border-b-2 border-white"></div>
     </div>
   );
 }

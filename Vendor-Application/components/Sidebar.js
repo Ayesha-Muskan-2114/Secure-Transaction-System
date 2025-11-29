@@ -1,15 +1,13 @@
 'use client';
-
+import Image from "next/image";
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { 
   LayoutDashboard, 
-  ArrowDownToLine, 
   ArrowUpFromLine, 
   History, 
   Scan, 
-  LogOut,
-  Building2
+  LogOut
 } from 'lucide-react';
 import { clearAuth } from '@/lib/auth';
 import { Button } from '@/components/ui/button';
@@ -17,7 +15,6 @@ import { cn } from '@/lib/utils';
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
- // { name: 'Deposit', href: '/deposit', icon: ArrowDownToLine },
   { name: 'Transfer', href: '/transfer', icon: ArrowUpFromLine },
   { name: 'FacePay', href: '/facepay', icon: Scan },
   { name: 'Transactions', href: '/transactions', icon: History },
@@ -33,13 +30,18 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="flex h-screen w-64 flex-col border-r bg-card">
+    <div className="flex h-screen w-64 flex-col border-r bg-purple-800">
+
       {/* Logo */}
-      <div className="flex h-16 items-center border-b px-6">
-        <Building2 className="h-8 w-8 text-primary" />
-        <span className="ml-3 text-xl font-bold bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent">
-          ABC Vendor
-        </span>
+      <div className="flex justify-center py-6">
+        <Image
+          src="/images/logo.png"
+          alt="NammaPay Logo"
+          width={150}
+          height={70}
+          className="rounded-xl shadow-lg"
+          priority
+        />
       </div>
 
       {/* Navigation */}
@@ -53,11 +55,11 @@ export default function Sidebar() {
               className={cn(
                 'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all',
                 isActive
-                  ? 'bg-primary text-primary-foreground shadow-md'
-                  : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
+                  ? 'bg-purple-600 text-white shadow-md'
+                  : 'text-white/80 hover:bg-purple-700 hover:text-white'
               )}
             >
-              <item.icon className="h-5 w-5" />
+              <item.icon className={`h-5 w-5 ${isActive ? 'text-white' : 'text-white/80'}`} />
               {item.name}
             </Link>
           );
@@ -65,13 +67,13 @@ export default function Sidebar() {
       </nav>
 
       {/* Logout */}
-      <div className="border-t p-4">
+      <div className="border-t border-purple-700 p-4">
         <Button
           variant="ghost"
-          className="w-full justify-start text-muted-foreground hover:text-destructive"
+          className="w-full justify-start text-white/80 hover:text-red-500"
           onClick={handleLogout}
         >
-          <LogOut className="mr-3 h-5 w-5" />
+          <LogOut className="mr-3 h-5 w-5 text-white/80" />
           Logout
         </Button>
       </div>
